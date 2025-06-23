@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SS Chowa</title>
+  <link rel="icon" href="logo.png" type="image/png" sizes="94x94" />
+  <style>
+  :root {
+    --primary: #3e5a76;
+    --accent: #809fb8;
+    --bg: #f5f7fa;
+    --card-bg: #ffffff;
+    --border: #d0dbe5;
+    --text: #2c3e50;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Times New Roman", Times, serif;
+    background-color: #f7f7f7;
+    color: #222;
+    line-height: 1.6;
+  }
+
+  header {
+    background-color: #fff;
+    padding: 20px 40px;
+    border-bottom: 2px solid #ccc;
+    text-align: right;
+  }
+
+  header a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+  }
+
+  header a:last-child {
+    border-right: none;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  section {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  section:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  h2 {
+    color: var(--primary);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-left: 6px solid var(--accent);
+    padding-left: 14px;
+  }
+
+  .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--accent);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  .card .label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+  }
+
+  .card h3 {
+    margin: 5px 0 10px 0;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  .card p {
+    margin: 1px 0;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .date-badge {
+    display: inline-block;
+    background-color: var(--border);
+    color: #121224;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    margin-left: -5px;
+    margin-bottom: 10px;
+  }
+
+  .footer {
+    background-color: #f8f9fb;
+    padding: 10px 20px 10px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .icon {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .icon img {
+    width: 24px;
+    height: 24px;
+    transition: all 0.3s ease;
+  }
+
+  .icon:hover {
+    background-color: #007bff;
+    transform: scale(1.15);
+  }
+
+  .icon:hover img {
+    filter: brightness(0) invert(1);
+  }
+
+  .icon::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .icon:hover::after {
+    opacity: 1;
+  }
+
+  @media (max-width: 600px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+  <header>
+    <a href="/index/">About</a>
+    <a href="/blog/">Blog</a>
+    <a href="/about/">More</a>
+  </header>
+  <main class="container">
+
+    <!-- Education -->
+    <section>
+      <h2>Education</h2>
+      <div class="card">
+        <div class="date-badge">2020 – 2023</div>
+        <h3>Bachelor in Computer Science and Engineering</h3>
+        <p>Daffodil International University, Dhaka, Bangladesh</p>
+        <p><strong>Major Courses:</strong></p>
+        <ul>
+          <li>Data Mining and Machine Learning</li>
+          <li>Digital Image Processing</li>
+          <li>Artificial Intelligence</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="card">
+        <div class="date-badge">Nov 2024 – Present</div>
+        <h3>Instructor</h3>
+        <p>Health Informatics Research Lab, Daffodil International University | Bangladesh</p>
+        <p>Computer Vision and Deep Learning for Medical Data Analysis Bootcamp</p>
+      </div>
+      <div class="card">
+        <div class="date-badge">Jul 2023 – Present</div>
+        <h3>Remote Consultant & Research Assistant</h3>
+        <p>Faculty of Science and Technology, Charles Darwin University | Australia</p>
+        <p>Collaborator: Professor Sami Azam</p>
+      </div>
+      <div class="card">
+        <div class="date-badge">Sep 2023 – Present</div>
+        <h3>Research Associate</h3>
+        <p>Health Informatics Research Lab (HIRL), Daffodil International University | Bangladesh</p>
+        <p>Mentoring seven research teams on health informatics and machine learning projects. Overseeing lab operations and ensuring regular updates and progress tracking for all teams.</p>
+      </div>
+      <div class="card">
+        <div class="date-badge">Dec 2022 – Aug 2023</div>
+        <h3>Lab Member</h3>
+        <p>Health Informatics Research Lab, Daffodil International University | Bangladesh</p>
+        <p>Contributed to projects focused on Computer Vision and Health Informatics.</p>
+      </div>
+      <div class="card">
+        <div class="date-badge">Aug 2022 – Nov 2022</div>
+        <h3>Student Prefect</h3>
+        <p>Daffodil International University | Bangladesh</p>
+        <p>Courses supervised: Algorithms Design & Analysis (Prof. S M Aminul Haque),<br>
+        Data Mining and Machine Learning (Dr. Md Zahid Hasan)</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Services</h2>
+      <div class="card">
+        <div class="label">Academic Reviewer</div>
+        <ul>
+          <li>Scientific Reports (<a href="https://example.com/scientific-reports-certificate.pdf" target="_blank">Certificate</a>)</li>
+          <li>Expert Systems with Applications (<a href="https://example.com/expert-systems-certificate.pdf" target="_blank">Certificate</a>)</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+<footer class="footer">
+  <div class="container">
+    <div class="social-icons">
+      <a href="mailto:sadiasultana.chowa@gmail.com" class="icon" data-tooltip="Email">
+        <img src="https://img.icons8.com/ios-filled/24/000000/new-post.png" alt="Email">
+      </a>
+      <a href="https://scholar.google.com/citations?user=JKcqHrMAAAAJ&hl=en" class="icon" data-tooltip="Google Scholar" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/24/000000/graduation-cap.png" alt="Scholar">
+      </a>
+      <a href="https://github.com/Sultana-Chowa" class="icon" data-tooltip="GitHub" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/24/000000/github.png" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/sadia-sultana-chowa-/" class="icon" data-tooltip="LinkedIn" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/24/000000/linkedin.png" alt="LinkedIn">
+      </a>
+    </div>
+    <div class="footer-text">
+      © 2025 SS Chowa. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

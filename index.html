@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SS Chowa</title>
+  <link rel="icon" href="logo.png" type="image/png" sizes="94x94" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Times New Roman", Times, serif;
+      background-color: #f7f7f7;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 20px 40px;
+      border-bottom: 1px solid #ccc;
+      text-align: right;
+    }
+
+    header a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-size: 1rem;
+      border-right: 1px solid #ccc;
+      padding-right: 10px;
+    }
+
+    header a:last-child {
+      border-right: none;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+
+    .profile {
+      display: flex;
+      gap: 50px;
+    }
+
+    .profile-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .profile img {
+      width: 230px;
+      height: 230px;
+      border-radius: 70%;
+      object-fit: cover;
+      border: 1px solid #fffbfb;
+    }
+
+    .icons {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .icons a {
+      margin: 0 8px;
+      font-size: 24px;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .icons a i {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .icons a:hover i {
+      transform: scale(1.3);
+    }
+
+    .icons a .fa-google { color: #4285F4; }
+    .icons a .fa-linkedin { color: #0A66C2; }
+    .icons a .fa-envelope { color: #D44638; }
+    .icons a .fa-x-twitter { color: #000000; }
+
+    .profile-info {
+      flex: 1;
+    }
+
+    .profile-info h1,
+    .profile-info p {
+      margin: 5px 0;
+    }
+
+    .profile-info .location {
+      color: #555;
+      font-size: 0.95em;
+    }
+
+    .profile-info .bio {
+      text-align: justify;
+      margin-top: 10px;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    section {
+      margin-top: 50px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+    }
+
+    .news-box {
+      max-height: 250px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #fcfcfc;
+    }
+
+    .news-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .news-table td {
+      padding: 8px 10px;
+      vertical-align: top;
+    }
+
+    .news-table td:first-child {
+      font-weight: bold;
+      width: 110px;
+      white-space: nowrap;
+    }
+
+    .pub-item {
+      background-color: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      overflow: hidden;
+      display: flex;
+      gap: 20px;
+      align-items: stretch; /* Ensures equal height */
+      min-height: 230px;    /* Set a minimum height */
+      height: 230px;        /* Fixed height for all boxes */
+    }
+
+    .pub-item img {
+      width: 420px;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 5px;
+      flex-shrink: 0;
+    }
+
+
+    .pub-meta {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .btns {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btns a {
+      display: inline-block;
+      padding: 4px 10px;
+      text-decoration: none;
+      color: #00142a;
+      font-size: 0.75em;
+      border: 1px solid #000000;
+      border-radius: 12px;
+      background-color: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    .btns a:hover {
+      transform: scale(1.07);
+      background-color: #e6f0ff;
+      color: #0056b3;
+    }
+
+    .footer {
+      background-color: #f8f9fb;
+      padding: 10px 20px 10px;
+      text-align: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    #modalContent {
+      max-height: 300px;
+      overflow-y: auto;
+      background: #f5f5f5;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .copy-btn {
+      margin-top: 15px;
+      padding: 6px 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .copy-btn i {
+      font-size: 1rem;
+    }
+
+    .copy-btn.hidden {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .profile {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+      }
+
+      .profile img {
+        margin-bottom: 20px;
+      }
+
+      .news-table td {
+        display: block;
+        width: 100%;
+      }
+
+      .news-table td:first-child {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Your original content -->
+
+  <header>
+    <a href="/index/">About</a>
+    <a href="/blog/">Blog</a>
+    <a href="/about/">More</a>
+  </header>
+
+  <div class="container">
+    <div class="profile">
+      <div class="profile-left">
+        <img src="photo.jpg" alt="Profile Photo" />
+        <div class="icons">
+          <a href="https://github.com/Sultana-Chowa"><i class="fab fa-github"></i></a>
+          <a href="https://scholar.google.com/citations?user=JKcqHrMAAAAJ&hl=en"><i class="fab fa-google"></i></a>
+          <a href="https://www.linkedin.com/in/sadia-sultana-chowa-/"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:sadiasultana.chowa@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="profile-info">
+        <h1>Sadia Sultana Chowa / ছোয়া</h1>
+        <p class="location"><i class="fa-solid fa-location-dot"></i> Dhaka, Bangladesh</p>
+        <p class="bio">
+          I am a computer science engineer working remotely as a <strong>Consultant-Research Assistant</strong> affiliated with 
+          <a href="https://www.cdu.edu.au/">Charles Darwin University, Australia</a>. I am currently advised by 
+          <strong><a href="https://scholar.google.com/citations?user=kw5_oUMAAAAJ&hl=en">Prof. Sami Azam</a></strong>.
+        </p>
+
+        <p class="bio">
+          My research interests primarily focus on <strong>Computer Vision</strong>, <strong>Artificial Intelligence</strong>, 
+          and <strong>Large Language Models</strong>.
+        </p>
+
+        <p class="bio">
+          I completed a Bachelor's in Computer Science and Engineering from Daffodil International University, Bangladesh, 
+          where I worked on medical imaging, image enhancement, and machine learning under 
+          <strong><a href="https://scholar.google.com/citations?user=Uq3O034AAAAJ&hl=en">Dr. Zahid Hasan</a></strong>.
+        </p>
+
+      </div>
+    </div>
+
+
+    <section class="news">
+      <h2>News</h2>
+      <div class="news-box">
+        <table class="news-table">
+          <tr>
+            <td>Jan, 2025</td>
+            <td>📢 Published a first-author Q1 journal paper on eye disease diagnosis in <i>Journal of Healthcare Informatics Research</i>! 🧠📈</td>
+          </tr>
+          <tr>
+            <td>Jan, 2025</td>
+            <td>📢 Published a first-author Q1 journal paper on Lung disease diagnosis in <i>Scientific Reports</i>! 🧠📈</td>
+          </tr>
+          <tr>
+            <td>June, 2024</td>
+            <td>🏅 Recognition of Scholarly Publication in Reputed Indexed Journal. 📚🌟</td>
+          </tr>
+          <tr>
+            <td>June, 2024</td>
+            <td>📝 First-author paper accepted in <i>Journal of Imaging Informatics in Medicine</i>! 🎉🧬</td>
+          </tr>
+          <tr>
+            <td>Nov, 2023</td>
+            <td>📝 First-author paper accepted in <i>Journal of Cancer Research and Clinical Oncology</i>! 🎉🧬</td>
+          </tr>
+          <tr>
+            <td>Jul, 2023</td>
+            <td>🌐 Joined Charles Darwin University as a remote Consultant-Research Assistant 👩‍💻</td>
+          </tr>
+          <tr>
+            <td>Dec, 2022</td>
+            <td>🧠 Joined Health Informatics Research Lab (HIRL), Daffodil International University — working on medical data analysis with deep learning 🖥️📊</td>
+          </tr>
+          <tr>
+            <td>Jan, 2022</td>
+            <td>🎓 Completed 3rd ELC course (Entrepreneurship, Leadership & Communication) at Sultan Agung Islamic University 💼🌱</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="publications">
+      <h2>Selected Publications</h2>
+      <div class="pub-item">
+        <img src="methodology_A_R.jpg" alt="SSL-CT">
+        <div>
+          <strong>An automated privacy-preserving self-supervised classification of COVID-19 from lung CT scan images minimizing the requirements of large data annotation</strong>
+          <p class="pub-meta">SS. Chowa et al. – <a href="https://www.nature.com/srep/">Scientific Reports, 2025</a></p>
+          <div class="btns">
+            <a href="#" class="modal-btn" data-title="Abstract" data-content="This study presents a novel privacy-preserving self-supervised (SSL) framework for COVID-19 classification from lung CT scans, utilizing federated learning (FL) enhanced with Paillier homomorphic encryption (PHE) to prevent third-party attacks during training. The FL-SSL based framework employs two publicly available lung CT scan datasets which are considered as labeled and an unlabeled dataset. The unlabeled dataset is split into three subsets which are assumed to be collected from three hospitals. Training is done using the Bootstrap Your Own Latent (BYOL) contrastive learning SSL framework with a VGG19 encoder followed by attention CNN blocks (VGG19 + attention CNN). The input datasets are processed by selecting the largest lung portion of each lung CT scan using an automated selection approach and a 64 × 64 input size is utilized to reduce computational complexity. Healthcare privacy issues are addressed by collaborative training across decentralized datasets and secure aggregation with PHE, underscoring the effectiveness of this approach. Three subsets of the dataset are used to train the local BYOL model, which together optimizes the central encoder. The labeled dataset is employed to train the central encoder (updated VGG19 + attention CNN), resulting in an accuracy of 97.19%, a precision of 97.43%, and a recall of 98.18%. The reliability of the framework’s performance is demonstrated through statistical analysis and five-fold cross-validation. The efficacy of the proposed framework is further showcased by showing its performance on three distinct modality datasets: skin cancer, breast cancer, and chest X-rays. In conclusion, this study offers a promising solution for accurate diagnosis of chest X-rays, preserving privacy and overcoming the challenges of dataset scarcity and computational complexity.">Abstract</a>
+            <a href="#" class="modal-btn" data-title="RIS Citation" data-content="TY  - JOUR
+AU  - Chowa, Sadia Sultana
+AU  - Bhuiyan, Md Rahad Islam
+AU  - Tahosin, Mst. Sazia
+AU  - Karim, Asif
+AU  - Montaha, Sidratul
+AU  - Hassan, Md. Mehedi
+AU  - Shah, Mohd Asif
+AU  - Azam, Sami
+PY  - 2025
+DA  - 2025/01/02
+TI  - An automated privacy-preserving self-supervised classification of COVID-19 from lung CT scan images minimizing the requirements of large data annotation
+JO  - Scientific Reports
+SP  - 226
+VL  - 15
+IS  - 1
+AB  - This study presents a novel privacy-preserving self-supervised (SSL) framework for COVID-19 classification from lung CT scans, utilizing federated learning (FL) enhanced with Paillier homomorphic encryption (PHE) to prevent third-party attacks during training. The FL-SSL based framework employs two publicly available lung CT scan datasets which are considered as labeled and an unlabeled dataset. The unlabeled dataset is split into three subsets which are assumed to be collected from three hospitals. Training is done using the Bootstrap Your Own Latent (BYOL) contrastive learning SSL framework with a VGG19 encoder followed by attention CNN blocks (VGG19 + attention CNN). The input datasets are processed by selecting the largest lung portion of each lung CT scan using an automated selection approach and a 64 × 64 input size is utilized to reduce computational complexity. Healthcare privacy issues are addressed by collaborative training across decentralized datasets and secure aggregation with PHE, underscoring the effectiveness of this approach. Three subsets of the dataset are used to train the local BYOL model, which together optimizes the central encoder. The labeled dataset is employed to train the central encoder (updated VGG19 + attention CNN), resulting in an accuracy of 97.19%, a precision of 97.43%, and a recall of 98.18%. The reliability of the framework’s performance is demonstrated through statistical analysis and five-fold cross-validation. The efficacy of the proposed framework is further showcased by showing its performance on three distinct modality datasets: skin cancer, breast cancer, and chest X-rays. In conclusion, this study offers a promising solution for accurate diagnosis of chest X-rays, preserving privacy and overcoming the challenges of dataset scarcity and computational complexity.
+SN  - 2045-2322
+UR  - https://doi.org/10.1038/s41598-024-83972-6
+DO  - 10.1038/s41598-024-83972-6
+ID  - Chowa2025
+ER  - 
+
+">RIS</a>
+            <a href="https://www.nature.com/articles/s41598-024-83972-6">Link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <img src="p1.png" alt="F-GNN">
+        <div>
+          <strong>Graph neural network‑based breast cancer diagnosis using ultrasound images with optimized graph construction integrating the medically signifcant features</strong>
+          <p class="pub-meta">SS. Chowa et al. – <a href="https://link.springer.com/journal/432">Journal of Cancer Research and Clinical Oncology, 2023</a></p>
+          <div class="btns">
+            <a href="#" class="modal-btn" data-title="Abstract" data-content="An automated computerized approach can aid radiologists in the early diagnosis of breast cancer. In this study, a novel method is proposed for classifying breast tumors into benign and malignant, based on the ultrasound images through a Graph Neural Network (GNN) model utilizing clinically significant features. Ten informative features are extracted from the region of interest (ROI), based on the radiologists’ diagnosis markers. The significance of the features is evaluated using density plot and T test statistical analysis method. A feature table is generated where each row represents individual image, considered as node, and the edges between the nodes are denoted by calculating the Spearman correlation coefficient. A graph dataset is generated and fed into the GNN model. The model is configured through ablation study and Bayesian optimization. The optimized model is then evaluated with different correlation thresholds for getting the highest performance with a shallow graph. The performance consistency is validated with k-fold cross validation. The impact of utilizing ROIs and handcrafted features for breast tumor classification is evaluated by comparing the model’s performance with Histogram of Oriented Gradients (HOG) descriptor features from the entire ultrasound image. Lastly, a clustering-based analysis is performed to generate a new filtered graph, considering weak and strong relationships of the nodes, based on the similarities. The results indicate that with a threshold value of 0.95, the GNN model achieves the highest test accuracy of 99.48%, precision and recall of 100%, and F1 score of 99.28%, reducing the number of edges by 85.5%. The GNN model’s performance is 86.91%, considering no threshold value for the graph generated from HOG descriptor features. Different threshold values for the Spearman’s correlation score are experimented with and the performance is compared. No significant differences are observed between the previous graph and the filtered graph. The proposed approach might aid the radiologists in effective diagnosing and learning tumor pattern of breast cancer.">Abstract</a>
+            <a href="#" class="modal-btn" data-title="RIS Citation" data-content="TY  - JOUR
+AU  - Chowa, Sadia Sultana
+AU  - Azam, Sami
+AU  - Montaha, Sidratul
+AU  - Payel, Israt Jahan
+AU  - Bhuiyan, Md Rahad Islam
+AU  - Hasan, Md. Zahid
+AU  - Jonkman, Mirjam
+PY  - 2023
+DA  - 2023/12/01
+TI  - Graph neural network-based breast cancer diagnosis using ultrasound images with optimized graph construction integrating the medically significant features
+JO  - Journal of Cancer Research and Clinical Oncology
+SP  - 18039
+EP  - 18064
+VL  - 149
+IS  - 20
+AB  - An automated computerized approach can aid radiologists in the early diagnosis of breast cancer. In this study, a novel method is proposed for classifying breast tumors into benign and malignant, based on the ultrasound images through a Graph Neural Network (GNN) model utilizing clinically significant features.
+SN  - 1432-1335
+UR  - https://doi.org/10.1007/s00432-023-05464-w
+DO  - 10.1007/s00432-023-05464-w
+ID  - Chowa2023
+ER  - 
+
+">RIS</a>
+            <a href="https://link.springer.com/article/10.1007/s00432-023-05464-w">Link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <img src="ret.png" alt="Mammo-Light">
+        <div>
+          <strong>A Low Complexity Efcient Deep Learning Model for Automated Retinal Disease Diagnosis</strong>
+          <p class="pub-meta">SS. Chowa et al. – <a href="https://link.springer.com/journal/41666">Journal of Healthcare Informatics Research, 2025</a></p>
+          <div class="btns">
+            <a href="#" class="modal-btn" data-title="Abstract" data-content="The identification and early treatment of retinal disease can help to prevent loss of vision. Early diagnosis allows a greater range of treatment options and results in better outcomes. Optical coherence tomography (OCT) is a technology used by ophthalmologists to detect and diagnose certain eye conditions. In this paper, human retinal OCT images are classified into four classes using deep learning. Several image preprocessing techniques are employed to enhance the image quality. An augmentation technique, called generative adversarial network (GAN), is utilized in the Drusen and DME classes to address data imbalance issues, resulting in a total of 130,649 images. A lightweight optimized compact convolutional transformers (OCCT) model is developed by conducting an ablation study on the initial CCT model for categorizing retinal conditions. The proposed OCCT model is compared with two transformer-based models: vision Transformer (ViT) and Swin Transformer. The models are trained and evaluated with 32 × 32 sized images of the GAN-generated enhanced dataset. Additionally, eight transfer learning models are presented with the same input images to compare their performance with the OCCT model. The proposed model’s stability is assessed by decreasing the number of training images and evaluating the performance. The OCCT model’s accuracy is 97.09%, and it outperforms the two transformer models. The result further indicates that the OCCT model sustains its performance, even if the number of images is reduced.">Abstract</a>
+            <a href="#" class="modal-btn" data-title="RIS Citation" data-content="TY  - JOUR
+AU  - Chowa, Sadia Sultana
+AU  - Bhuiyan, Md. Rahad Islam
+AU  - Payel, Israt Jahan
+AU  - Karim, Asif
+AU  - Khan, Inam Ullah
+AU  - Montaha, Sidratul
+AU  - Hasan, Md. Zahid
+AU  - Jonkman, Mirjam
+AU  - Azam, Sami
+PY  - 2025
+DA  - 2025/03/01
+TI  - A Low Complexity Efficient Deep Learning Model for Automated Retinal Disease Diagnosis
+JO  - Journal of Healthcare Informatics Research
+SP  - 1
+EP  - 40
+VL  - 9
+IS  - 1
+AB  - The identification and early treatment of retinal disease can help to prevent loss of vision. Early diagnosis allows a greater range of treatment options and results in better outcomes. Optical coherence tomography (OCT) is a technology used by ophthalmologists to detect and diagnose certain eye conditions. In this paper, human retinal OCT images are classified into four classes using deep learning. Several image preprocessing techniques are employed to enhance the image quality. An augmentation technique, called generative adversarial network (GAN), is utilized in the Drusen and DME classes to address data imbalance issues, resulting in a total of 130,649 images. A lightweight optimized compact convolutional transformers (OCCT) model is developed by conducting an ablation study on the initial CCT model for categorizing retinal conditions. The proposed OCCT model is compared with two transformer-based models: vision Transformer (ViT) and Swin Transformer. The models are trained and evaluated with 32 × 32 sized images of the GAN-generated enhanced dataset. Additionally, eight transfer learning models are presented with the same input images to compare their performance with the OCCT model. The proposed model’s stability is assessed by decreasing the number of training images and evaluating the performance. The OCCT model’s accuracy is 97.09%, and it outperforms the two transformer models. The result further indicates that the OCCT model sustains its performance, even if the number of images is reduced.
+SN  - 2509-498X
+UR  - https://doi.org/10.1007/s41666-024-00182-5
+DO  - 10.1007/s41666-024-00182-5
+ID  - Chowa2025
+ER  - 
+
+">RIS</a>
+            <a href="https://link.springer.com/article/10.1007/s41666-024-00182-5">Link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <img src="p2.png" alt="ATRS">
+        <div>
+          <strong>Improving the Automated Diagnosis of Breast Cancer with Mesh Reconstruction of Ultrasound Images Incorporating 3D Mesh Features and a Graph Attention Network</strong>
+          <p class="pub-meta">SS. Chowa et al. – <a href="https://link.springer.com/journal/10278">Journal of Imaging Informatics in Medicine, 2024</a></p>
+          <div class="btns">
+            <a href="#" class="modal-btn" data-title="Abstract" data-content="This study proposes a novel approach for breast tumor classification from ultrasound images into benign and malignant by converting the region of interest (ROI) of a 2D ultrasound image into a 3D representation using the point-e system, allowing for in-depth analysis of underlying characteristics. Instead of relying solely on 2D imaging features, this method extracts 3D mesh features that describe tumor patterns more precisely. Ten informative and medically relevant mesh features are extracted and assessed with two feature selection techniques. Additionally, a feature pattern analysis has been conducted to determine the feature’s significance. A feature table with dimensions of 445 × 12 is generated and a graph is constructed, considering the rows as nodes and the relationships among the nodes as edges. The Spearman correlation coefficient method is employed to identify edges between the strongly connected nodes (with a correlation score greater than or equal to 0.7), resulting in a graph containing 56,054 edges and 445 nodes. A graph attention network (GAT) is proposed for the classification task and the model is optimized with an ablation study, resulting in the highest accuracy of 99.34%. The performance of the proposed model is compared with ten machine learning (ML) models and one-dimensional convolutional neural network where the test accuracy of these models ranges from 73 to 91%. Our novel 3D mesh-based approach, coupled with the GAT, yields promising performance for breast tumor classification, outperforming traditional models, and has the potential to reduce time and effort of radiologists providing a reliable diagnostic system.">Abstract</a>
+            <a href="#" class="modal-btn" data-title="RIS Citation" data-content="TY  - JOUR
+AU  - Chowa, Sadia Sultana
+AU  - Azam, Sami
+AU  - Montaha, Sidratul
+AU  - Bhuiyan, Md Rahad Islam
+AU  - Jonkman, Mirjam
+PY  - 2024
+DA  - 2024/06/01
+TI  - Improving the Automated Diagnosis of Breast Cancer with Mesh Reconstruction of Ultrasound Images Incorporating 3D Mesh Features and a Graph Attention Network
+JO  - Journal of Imaging Informatics in Medicine
+SP  - 1067
+EP  - 1085
+VL  - 37
+IS  - 3
+AB  - This study proposes a novel approach for breast tumor classification from ultrasound images into benign and malignant by converting the region of interest (ROI) of a 2D ultrasound image into a 3D representation using the point-e system, allowing for in-depth analysis of underlying characteristics. Instead of relying solely on 2D imaging features, this method extracts 3D mesh features that describe tumor patterns more precisely. Ten informative and medically relevant mesh features are extracted and assessed with two feature selection techniques. Additionally, a feature pattern analysis has been conducted to determine the feature’s significance. A feature table with dimensions of 445 × 12 is generated and a graph is constructed, considering the rows as nodes and the relationships among the nodes as edges. The Spearman correlation coefficient method is employed to identify edges between the strongly connected nodes (with a correlation score greater than or equal to 0.7), resulting in a graph containing 56,054 edges and 445 nodes. A graph attention network (GAT) is proposed for the classification task and the model is optimized with an ablation study, resulting in the highest accuracy of 99.34%. The performance of the proposed model is compared with ten machine learning (ML) models and one-dimensional convolutional neural network where the test accuracy of these models ranges from 73 to 91%. Our novel 3D mesh-based approach, coupled with the GAT, yields promising performance for breast tumor classification, outperforming traditional models, and has the potential to reduce time and effort of radiologists providing a reliable diagnostic system.
+SN  - 2948-2933
+UR  - https://doi.org/10.1007/s10278-024-00983-5
+DO  - 10.1007/s10278-024-00983-5
+ID  - Chowa2024
+ER  - 
+
+">RIS</a>
+            <a href="https://link.springer.com/article/10.1007/s10278-024-00983-5">Link</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="pub-item">
+        <img src="gr5_lrg.jpg" alt="Mammo-Light">
+        <div>
+          <strong>Automated breast tumor ultrasound image segmentation with hybrid UNet and classification using fine-tuned CNN model</strong>
+          <p class="pub-meta">S Hossain, SS. Chowa et al. – <a href="https://www.cell.com/heliyon/home">Heliyon, 2023</a></p>
+          <div class="btns">
+            <a href="#" class="modal-btn" data-title="Abstract" data-content="Introduction
+Breast cancer stands as the second most deadly form of cancer among women worldwide. Early diagnosis and treatment can significantly mitigate mortality rates.
+Purpose
+The study aims to classify breast ultrasound images into benign and malignant tumors. This approach involves segmenting the breast's region of interest (ROI) employing an optimized UNet architecture and classifying the ROIs through an optimized shallow CNN model utilizing an ablation study.
+Method
+Several image processing techniques are utilized to improve image quality by removing text, artifacts, and speckle noise, and statistical analysis is done to check the enhanced image quality is satisfactory. With the processed dataset, the segmentation of breast tumor ROI is carried out, optimizing the UNet model through an ablation study where the architectural configuration and hyperparameters are altered. After obtaining the tumor ROIs from the fine-tuned UNet model (RKO-UNet), an optimized CNN model is employed to classify the tumor into benign and malignant classes. To enhance the CNN model's performance, an ablation study is conducted, coupled with the integration of an attention unit. The model's performance is further assessed by classifying breast cancer with mammogram images.
+Result
+The proposed classification model (RKONet-13) results in an accuracy of 98.41 %. The performance of the proposed model is further compared with five transfer learning models for both pre-segmented and post-segmented datasets. K-fold cross-validation is done to assess the proposed RKONet-13 model's performance stability. Furthermore, the performance of the proposed model is compared with previous literature, where the proposed model outperforms existing methods, demonstrating its effectiveness in breast cancer diagnosis. Lastly, the model demonstrates its robustness for breast cancer classification, delivering an exceptional performance of 96.21 % on a mammogram dataset.
+Conclusion
+The efficacy of this study relies on image pre-processing, segmentation with hybrid attention UNet, and classification with fine-tuned robust CNN model. This comprehensive approach aims to determine an effective technique for detecting breast cancer within ultrasound images.">Abstract</a>
+            <a href="#" class="modal-btn" data-title="RIS Citation" data-content="
+TY  - JOUR
+T1  - Automated breast tumor ultrasound image segmentation with hybrid UNet and classification using fine-tuned CNN model
+AU  - Hossain, Shahed
+AU  - Azam, Sami
+AU  - Montaha, Sidratul
+AU  - Karim, Asif
+AU  - Chowa, Sadia Sultana
+AU  - Mondol, Chaity
+AU  - Zahid Hasan, Md
+AU  - Jonkman, Mirjam
+Y1  - 2023/11/01
+PY  - 2023
+N1  - doi: 10.1016/j.heliyon.2023.e21369
+DO  - 10.1016/j.heliyon.2023.e21369
+T2  - Heliyon
+JF  - Heliyon
+VL  - 9
+IS  - 11
+PB  - Elsevier
+SN  - 2405-8440
+M3  - doi: 10.1016/j.heliyon.2023.e21369
+UR  - https://doi.org/10.1016/j.heliyon.2023.e21369
+Y2  - 2025/06/23
+ER  - 
+">RIS</a>
+            <a href="https://www.cell.com/heliyon/fulltext/S2405-8440(23)08577-8">Link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <img src="gb.png" alt="Mammo-Light">
+        <div>
+          <strong>GBCHV an advanced deep learning anatomy aware model for accurate classification of gallbladder cancer utilizing ultrasound images</strong>
+          <p class="pub-meta">MZ Hasan, SS. Chowa et al. – <a href="https://www.nature.com/srep/">Scientific Reports, 2025</a></p>
+          <div class="btns">
+            <a href="#" class="modal-btn" data-title="Abstract" data-content="This study introduces a novel deep learning approach aimed at accurately classifying Gallbladder Cancer (GBC) into benign, malignant, and normal categories using ultrasound images from the challenging GBC USG (GBCU) dataset. The proposed methodology enhances image quality and specifies gallbladder wall boundaries by employing sophisticated image processing techniques like median filtering and contrast-limited adaptive histogram equalization. Unlike traditional convolutional neural networks, which struggle with complex spatial patterns, the proposed transformer-based model, GBC Horizontal-Vertical Transformer (GBCHV), incorporates a GBCHV-Trans block with self-attention mechanisms. In order to make the model anatomy-aware, the square-shaped input patches of the transformer are transformed into horizontal and vertical strips to obtain distinctive spatial relationships within gallbladder tissues. The novelty of this model lies in its anatomy-aware mechanism, which employs horizontal-vertical strip transformations to depict spatial relationships and complex anatomical features of the gallbladder more accurately. The proposed model achieved an overall diagnostic accuracy of 96.21% by performing an ablation study. A performance comparison between the proposed model and seven transfer learning models is further conducted, where the proposed model consistently outperformed the transfer learning models, showcasing its superior accuracy and robustness. Moreover, the decision-making process of the proposed model is further explained visually through the utilization of Gradient-weighted Class Activation Mapping (Grad-CAM). With the integration of advanced deep learning and image processing techniques, the GBCHV-Trans model offers a promising solution for precise and early-stage classification of GBC, surpassing conventional methods with superior accuracy and diagnostic efficacy.">Abstract</a>
+            <a href="#" class="modal-btn" data-title="RIS Citation" data-content="TY  - JOUR
+AU  - Hasan, Md. Zahid
+AU  - Rony, Md. Awlad Hossen
+AU  - Chowa, Sadia Sultana
+AU  - Bhuiyan, Md. Rahad Islam
+AU  - Moustafa, Ahmed A.
+PY  - 2025
+DA  - 2025/02/28
+TI  - GBCHV an advanced deep learning anatomy aware model for accurate classification of gallbladder cancer utilizing ultrasound images
+JO  - Scientific Reports
+SP  - 7120
+VL  - 15
+IS  - 1
+AB  - This study introduces a novel deep learning approach aimed at accurately classifying Gallbladder Cancer (GBC) into benign, malignant, and normal categories using ultrasound images from the challenging GBC USG (GBCU) dataset. The proposed methodology enhances image quality and specifies gallbladder wall boundaries by employing sophisticated image processing techniques like median filtering and contrast-limited adaptive histogram equalization. Unlike traditional convolutional neural networks, which struggle with complex spatial patterns, the proposed transformer-based model, GBC Horizontal-Vertical Transformer (GBCHV), incorporates a GBCHV-Trans block with self-attention mechanisms. In order to make the model anatomy-aware, the square-shaped input patches of the transformer are transformed into horizontal and vertical strips to obtain distinctive spatial relationships within gallbladder tissues. The novelty of this model lies in its anatomy-aware mechanism, which employs horizontal-vertical strip transformations to depict spatial relationships and complex anatomical features of the gallbladder more accurately. The proposed model achieved an overall diagnostic accuracy of 96.21% by performing an ablation study. A performance comparison between the proposed model and seven transfer learning models is further conducted, where the proposed model consistently outperformed the transfer learning models, showcasing its superior accuracy and robustness. Moreover, the decision-making process of the proposed model is further explained visually through the utilization of Gradient-weighted Class Activation Mapping (Grad-CAM). With the integration of advanced deep learning and image processing techniques, the GBCHV-Trans model offers a promising solution for precise and early-stage classification of GBC, surpassing conventional methods with superior accuracy and diagnostic efficacy.
+SN  - 2045-2322
+UR  - https://doi.org/10.1038/s41598-025-89232-5
+DO  - 10.1038/s41598-025-89232-5
+ID  - Hasan2025
+ER  - 
+
+">RIS</a>
+            <a href="https://www.nature.com/articles/s41598-025-89232-5">Link</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <img src="mal.jpg" alt="Mammo-Light">
+        <div>
+          <strong>Malignancy pattern analysis of breast ultrasound images using clinical features and a graph convolutional network</strong>
+          <p class="pub-meta">S. Monntaha, SS. Chowa et al. – <a href="https://journals.sagepub.com/home/DHJ">Digital Health, 2024</a></p>
+          <div class="btns">
+            <a href="#" class="modal-btn" data-title="Abstract" data-content="Objective
+Early diagnosis of breast cancer can lead to effective treatment, possibly increase long-term survival rates, and improve quality of life. The objective of this study is to present an automated analysis and classification system for breast cancer using clinical markers such as tumor shape, orientation, margin, and surrounding tissue. The novelty and uniqueness of the study lie in the approach of considering medical features based on the diagnosis of radiologists.
+Methods
+Using clinical markers, a graph is generated where each feature is represented by a node, and the connection between them is represented by an edge which is derived through Pearson's correlation method. A graph convolutional network (GCN) model is proposed to classify breast tumors into benign and malignant, using the graph data. Several statistical tests are performed to assess the importance of the proposed features. The performance of the proposed GCN model is improved by experimenting with different layer configurations and hyper-parameter settings.
+Results
+Results show that the proposed model has a 98.73% test accuracy. The performance of the model is compared with a graph attention network, a one-dimensional convolutional neural network, and five transfer learning models, ten machine learning models, and three ensemble learning models. The performance of the model was further assessed with three supplementary breast cancer ultrasound image datasets, where the accuracies are 91.03%, 94.37%, and 89.62% for Dataset A, Dataset B, and Dataset C (combining Dataset A and Dataset B) respectively. Overfitting issues are assessed through k-fold cross-validation.
+Conclusion
+Several variants are utilized to present a more rigorous and fair evaluation of our work, especially the importance of extracting clinically relevant features. Moreover, a GCN model using graph data can be a promising solution for an automated feature-based breast image classification system.">Abstract</a>
+            <a href="#" class="modal-btn" data-title="RIS Citation" data-content="Montaha S, Azam S, Bhuiyan MdRI, Chowa SS, Mukta MdSH, Jonkman M. Malignancy pattern analysis of breast ultrasound images using clinical features and a graph convolutional network. DIGITAL HEALTH. 2024;10. doi:10.1177/20552076241251660">Cite</a>
+            <a href="https://journals.sagepub.com/doi/full/10.1177/20552076241251660">Link</a>
+          </div>
+        </div>
+      </div>      
+    </section>
+  </div>
+  <!-- Modal -->
+<div id="modal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 9999;">
+  <div style="background: #fff; max-width: 700px; margin: 100px auto; padding: 30px; border-radius: 10px; position: relative;">
+    <span id="closeModal" style="position: absolute; top: 10px; right: 20px; font-size: 20px; cursor: pointer;">&times;</span>
+    <h3 id="modalTitle" style="margin-top: 0;">Modal Title</h3>
+    <pre id="modalContent" style="white-space: pre-wrap; font-family: monospace;"></pre>
+    <button id="copyButton" class="copy-btn hidden" onclick="copyModalContent()"><i class="fas fa-copy"></i> Copy Citation</button>
+  </div>
+</div>
+
+<!-- Modal Script -->
+<script>
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalContent = document.getElementById('modalContent');
+  const closeModal = document.getElementById('closeModal');
+  const copyButton = document.getElementById('copyButton');
+
+  document.querySelectorAll('.modal-btn').forEach(button => {
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      const title = this.getAttribute('data-title');
+      const content = this.getAttribute('data-content');
+      modalTitle.innerText = title;
+      modalContent.innerText = content;
+      if (title.toLowerCase().includes('abstract')) {
+        copyButton.classList.add('hidden');
+      } else {
+        copyButton.classList.remove('hidden');
+      }
+      modal.style.display = 'block';
+    });
+  });
+
+  closeModal.onclick = () => modal.style.display = "none";
+  window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+  function copyModalContent() {
+    const text = modalContent.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Citation copied to clipboard!");
+    });
+  }
+</script>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-text">
+      © 2025 SS Chowa. All rights reserved.
+    </div>
+  </div>
+</footer>
+</body>
+</html>
